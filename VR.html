@@ -17,7 +17,7 @@
 
         /* Background image style */
         .background {
-            background-image: url('https://images.pexels.com/photos/6501751/pexels-photo-6501751.jpeg?auto=compress&cs=tinysrgb&w=800');
+            background-image: url('https://images.pexels.com/photos/6501751/pexels-photo-6501751.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
             background-size: cover;
             background-position: center;
             position: fixed;
@@ -49,15 +49,13 @@
             display: block;
             width: 100vw;
             height: 85vh;
-            line-height: 10%;
-            border: seashell;
+            border: none;
         }
 
-        /* Button styling */
-        #enter-vr {
+        /* Button styling for VR fullscreen and Home */
+        .button {
             position: absolute;
             top: 20px;
-            right: 20px;
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: 2px solid white;
@@ -69,7 +67,18 @@
             transition: background-color 0.3s ease;
         }
 
-        #enter-vr:hover {
+        /* Positioning the home button in the top-left */
+        #home-btn {
+            left: 20px;
+        }
+
+        /* Positioning the fullscreen button in the top-right */
+        #enter-vr {
+            right: 20px;
+        }
+
+        /* Button hover effects */
+        .button:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
 
@@ -89,8 +98,11 @@
         allow="vr; xr; accelerometer; magnetometer; gyroscope; webvr;webxr;">
     </iframe>
 
-    <!-- Button to trigger fullscreen (Optional) -->
-    <button id="enter-vr">Enter Fullscreen</button>
+    <!-- Button to go back to Home page -->
+    <button id="home-btn" class="button">Home</button>
+
+    <!-- Button to trigger fullscreen -->
+    <button id="enter-vr" class="button">Enter Fullscreen</button>
 
     <script>
         // JavaScript to handle fullscreen mode for the iframe
@@ -107,13 +119,10 @@
             }
         });
 
-        // Optional: Automatically hide the button if user is in VR mode
-        iframe.addEventListener('enterpictureinpicture', () => {
-            vrButton.style.display = 'none';
-        });
-
-        iframe.addEventListener('leavepictureinpicture', () => {
-            vrButton.style.display = 'block';
+        // JavaScript to navigate to home page when Home button is clicked
+        const homeButton = document.getElementById('home-btn');
+        homeButton.addEventListener('click', function() {
+            window.location.href = 'index.html'; // Change 'index.html' to the URL of your homepage
         });
     </script>
 
